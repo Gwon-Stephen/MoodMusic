@@ -1,2 +1,2 @@
 # MoodMusic
-TartanHacks2024 hackathon project
+TartanHacks 2024 Hackathon project
