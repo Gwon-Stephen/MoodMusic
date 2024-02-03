@@ -206,19 +206,7 @@
   }
 
   .login__button {
-    width: 100%;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    background-color: var(--white-color);
-    border-radius: 4rem;
-    color: var(--black-color);
-    font-weight: 500;
-    cursor: pointer;
-    text-align: bottom;
-  }
-
-  .login__button {
-    background-color: #007bff; /* Bootstrap primary blue, but you can choose any color */
+    background-color: blueviolet; /* Bootstrap primary blue, but you can choose any color */
     color: white; /* Text color */
     padding: 10px 20px; /* Top and bottom padding 10px, left and right padding 20px */
     border-radius: 5px; /* Rounded corners */
@@ -227,9 +215,14 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional: adds a subtle shadow */
     cursor: pointer; /* Changes the mouse cursor to indicate it's clickable */
     transition: background-color 0.3s; /* Smooth background color transition for hover effect */
-    position: fixed; /* Fixed position relative to the viewport */
+    position: absolute; /* Fixed position relative to the viewport */
     bottom: 20px; /* 20px from the bottom */
-    right: 20px; /* 20px from the right */
+    right: 80px; /* 20px from the right */
     text-decoration: none; /* Removes the underline from the link */
     z-index: 10;
+  }
+
+  .playlist{
+    background-color: blue;
+    z-index: -1;
   }
