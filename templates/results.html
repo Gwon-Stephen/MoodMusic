@@ -27,16 +27,19 @@
         <img src="../static/Layer 2.png" id="Mountain2" alt="">
     </section>
     <section id="About">
-        <h1>Your Playlist</h1>
+        <h1>Now Playing:</h1>
         <div class="gallery">
-            {% for track in tracks %}
-            <div class = "track">
-                <img class="cover" src={{track.cover_url}} + ".png" />
-                <div class="name"><b>{{track.name}}</b></div>
-                <div class="artist"><i>{{track.artist}}</i></div>
-            </div>
-            {% endfor %}
-            <div class="gallery-controls"></div>
+            <button class="carousel-button prev">&#8656</button>
+            <button class="carousel-button next">&#8658</button>
+            <ul>
+                {% for track in tracks %}
+                <div class = "track">
+                    <img class="cover" src={{track.cover_url}} + ".png" />
+                    <div class="name"><b>{{track.name}}</b></div>
+                    <div class="artist"><i>{{track.artist}}</i></div>
+                </div>
+                {% endfor %}
+            </ul>
         </div>
         <script src="../static/script.js"></script>
     </section>

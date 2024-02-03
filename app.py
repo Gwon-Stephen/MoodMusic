@@ -7,7 +7,7 @@ from deepface import DeepFace
 app = Flask(__name__)
 app.secret_key = 'dev'
 
-scopes = "ugc-image-upload playlist-modify-private playlist-modify-public user-top-read"
+scopes = "ugc-image-upload playlist-modify-private playlist-modify-public user-top-read streaming user-modify-playback-state"
 REDIRECT_URI = "http://127.0.0.1:5000/callback"
 CLIENT_ID = "602926a561c04ccc83591ca0a422e50f"
 CLIENT_SECRET = "9ba1ef576668404285679f387eb13783"
@@ -66,7 +66,6 @@ def results():
             "uri": song.uri,
             "cover-url": song.cover_url,
         }
-        print(x)
         session["recommendations"].append(json.dumps(x))
     return (render_template('results.html', name=session["name"], mood=curmood, tracks=recommendations)) #add emoticon
 

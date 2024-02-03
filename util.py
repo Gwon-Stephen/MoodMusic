@@ -65,6 +65,7 @@ def make_recommendations(access_token, parameters):
     # get recommendations
     parameters["seed_artists"] = artists
     parameters["seed_tracks"] = tracks
+    parameters["limit"] = 10
     endpoint = "/v1/recommendations"
     response = make_API_call(access_token=access_token, endpoint=endpoint, params=parameters)["tracks"]
     
@@ -79,6 +80,8 @@ def make_recommendations(access_token, parameters):
         url = track["album"]["images"][0]["url"]
         song = Song(name=name, artist=', '.join(artists), uri=uri, cover_url=url)
         recommendations.append(song)
+    
+    add_queue(access_token=access_token, songs=recommendations)
     return recommendations
 
 
@@ -92,8 +95,17 @@ def make_parameters(mood):
 
 # takes list of Song objects & add songs to queue
 def add_queue(access_token, songs):
-    # clear queue 
-    return 0
+    endpoint = "/v1/me/player/queue"
+    parameters = {}
+    print("adding to queue")
+    for song in songs:
+        print("adding", song.uri, "to queue")
+        parameters["uri"] = song.uri
+        make_API_call(access_token=access_token, endpoint=endpoint, params=parameters, post=True)
+    endpoint = "/v1/me/player/next"
+    make_API_call(access_token=access_token, endpoint=endpoint, post=True)
 
 
-# write openCV image to static files & access in frontend
+# access OpenCV capture in frontend
+# add make playlist functionality 
+# refresh page functionality 
