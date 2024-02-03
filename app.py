@@ -42,10 +42,6 @@ def callback():
     session["token"] = token_full['access_token']
     session["user_id"] = util.request_user_spotify_id(session["token"])
 
-    face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-    model = DeepFace.build_model("Emotion")
-
-    session["mood"] = mood.getMood(face_cascade, model)
     #webscraper.webscraper(session["token"])
     return redirect("/results")
 
@@ -55,20 +51,24 @@ def index():
 
 @app.route('/results')
 def results():
-    print(session["mood"])
-    # mood = mood.getMood()
-    # recommendations = util.make_recommendations(access_token=session["token"], parameters=util.make_parameters(mood))
-    # request.session["recommendations"] = []
-    # for song in recommendations:
-    #    x = {
-    #        "name": song.name,
-    #        "artist": song.artist,
-    #        "uri": song.uri,
-    #        "cover-url": song.cover_url,
-    #    }
-    #    request.session["recommendations"].append(json.dumps(x))
-    print(session["user_id"])
-    return (render_template('index.html'))
+    face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+    model = DeepFace.build_model("Emotion")
+
+    curmood = mood.getMood(face_cascade, model)
+    session["name"] = util.request_user_display_name(session["token"])
+
+    recommendations = util.make_recommendations(access_token=session["token"], parameters=util.make_parameters(curmood))
+    session["recommendations"] = []
+    for song in recommendations:
+        x = {
+            "name": song.name,
+            "artist": song.artist,
+            "uri": song.uri,
+            "cover-url": song.cover_url,
+        }
+        print(x)
+        session["recommendations"].append(json.dumps(x))
+    return (render_template('results.html', name=session["name"], mood=curmood, tracks=recommendations)) #add emoticon
 
 if __name__ == '__main__':
     app.run(use_reloader=True, debug=True)

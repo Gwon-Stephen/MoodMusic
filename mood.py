@@ -4,6 +4,7 @@ from deepface import DeepFace
 
 def getMood(face_cascade, model):
     emotions = ['angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral']
+    emotion = 'happy'
 
     cap = cv2.VideoCapture(0)
     success, image = cap.read()

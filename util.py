@@ -24,7 +24,7 @@ def request_user_spotify_id(access_token):
         return({'Error': 'Retriving user failed'})
 
 # Display Name
-def request_user_display_name(user_id, access_token):
+def request_user_display_name(access_token):
     headers['Authorization'] = "Bearer " + access_token
     response = requests.get(url = BASE_ADDRESS + "/v1/me", headers=headers)
     try:
@@ -88,8 +88,6 @@ def make_parameters(mood):
     if (mood == 'happy'):
         parameters["valence"] = 0
     
-
-
     return parameters
 
 # takes list of Song objects & add songs to queue
