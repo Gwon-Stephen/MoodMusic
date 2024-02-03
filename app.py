@@ -47,6 +47,17 @@ def index():
 
 @app.route('/results')
 def results():
+    # mood = mood.getMood()
+    # recommendations = util.make_recommendations(access_token=session["token"], parameters=util.make_parameters(mood))
+    # request.session["recommendations"] = []
+    # for song in recommendations:
+    #    x = {
+    #        "name": song.name,
+    #        "artist": song.artist,
+    #        "uri": song.uri,
+    #        "cover-url": song.cover_url,
+    #    }
+    #    request.session["recommendations"].append(json.dumps(x))
     print( session["user_id"])
     return (render_template('index.html'))
 
