@@ -13,3 +13,7 @@ virtualenv venv
 Install the required packages:
 
 pip install -r requirements.txt
+
+To run: 
+
+flask run
