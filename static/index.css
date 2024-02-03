@@ -92,6 +92,7 @@
   .login__button {
     border: none;
     outline: none;
+    align-items: center;
   }
   
   .login__input {
@@ -149,6 +150,7 @@
     color: var(--black-color);
     font-weight: 500;
     cursor: pointer;
+    text-align: center;
   }
   
   .login__register {
