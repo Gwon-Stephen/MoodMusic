@@ -1,6 +1,6 @@
 from flask import render_template, Flask, redirect, session, request
 import requests, json, base64
-import util
+import util, webscraper
 
 app = Flask(__name__)
 app.secret_key = 'dev'
@@ -39,6 +39,7 @@ def callback():
     token_full = requests.post("https://accounts.spotify.com/api/token", params=params, headers=headers).json()
     session["token"] = token_full['access_token']
     session["user_id"] = util.request_user_spotify_id(session["token"])
+    #webscraper.webscraper(session["token"])
     return redirect("/results")
 
 @app.route('/')
@@ -58,7 +59,7 @@ def results():
     #        "cover-url": song.cover_url,
     #    }
     #    request.session["recommendations"].append(json.dumps(x))
-    print( session["user_id"])
+    print(session["user_id"])
     return (render_template('index.html'))
 
 if __name__ == '__main__':

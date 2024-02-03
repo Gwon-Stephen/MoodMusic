@@ -83,7 +83,14 @@ def make_recommendations(access_token, parameters):
 
 
 def make_parameters(mood):
-    return 0
+    parameters = {}
+
+    if (mood == 'happy'):
+        parameters["valence"] = 0
+    
+
+
+    return parameters
 
 # takes list of Song objects & add songs to queue
 def add_queue(access_token, songs):
