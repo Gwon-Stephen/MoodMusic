@@ -39,8 +39,6 @@ def getMood(face_cascade, model):
         predictions = model.predict(face_normal)
         emotion_id = np.argmax(predictions)
         emotion = emotions[emotion_id]
-        cv2.rectangle(image, (main_face_x, main_face_y), (main_face_x + main_face_w, main_face_y + main_face_h), (0, 0, 255), 2)
-        cv2.putText(image, emotion, (main_face_x, main_face_y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 255), 2)
 
 
     cap.release()
