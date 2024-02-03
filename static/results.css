@@ -1,0 +1,153 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+:root{
+    /*font*/
+    --body-font: "Poppins", sans-serif;
+}
+
+* {
+    font-family: var(--body-font);
+    color: white;
+    padding: 0px;
+    margin: 0px;
+  }
+  body {
+    overflow-x: hidden;
+  }
+  #Home {
+    background-image: url(./background.png);
+    background-size: cover;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  #Home h1 {
+    color: white;
+    position: absolute;
+    font-size: 50px;
+    z-index: 2;
+    margin-top: 30px;
+  }
+  #Home img {
+    position: absolute;
+    bottom: 0px;
+  }
+  #Mountain1 {
+    position: absolute;
+    transform: translateY(118px);
+    left: 60px;
+    width: 100%;
+    pointer-events: none;
+  }
+  #Mountain2 {
+    width: 100%;
+    z-index: 3;
+    pointer-events: none;
+  }
+  #leftCloud,
+  #mainCloud,
+  #rightCloud {
+    top: 120px;
+    width: 200px;
+  }
+  #leftCloud {
+    left: 20px;
+  }
+  #rightCloud {
+    right: 20px;
+  }
+  @keyframes loadAnimation {
+    0% {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+  header nav {
+    position: absolute;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: normal;
+    z-index: 4;
+    padding: 60px 140px;
+    font-size: 22px;
+    animation: loadAnimation 2s;
+  }
+  header nav span {
+    width: 50%;
+    padding-right: 60px;
+    display: flex;
+    justify-content: space-around;
+  }
+  header nav span a {
+    text-decoration: none;
+    position: relative;
+  }
+  header nav span a::before {
+    content: "";
+    background-color: white;
+    width: 0%;
+    height: 2.5px;
+    display: unset;
+    position: absolute;
+    border-radius: 20px;
+    bottom: -5px;
+    transition: 0.3s;
+  }
+  header nav span a:hover::before {
+    width: 100%;
+  }
+  #About {
+    background-color: #100422;
+    padding: 0px 100px;
+    min-height: 100vh;
+    font-size: 20px;
+  }
+  #About h1 {
+    padding-top: 80px;
+    font-size: 40px;
+  }
+  #About p{
+      padding: 30px 0px;
+  }
+  .active{
+      color: black;
+  }
+  .active::before{
+      background-color: black;
+      width: 100%;
+  }
+
+  .gallery{
+    width:100%
+  }
+
+  .track{
+    align-items: center;
+    display: flex;
+    height: 400px;
+    margin: 0 auto;
+    max-width: 1000px;
+    position: relative;
+  }
+
+  .cover{
+    height: 200px;
+    opacity: 0;
+    position: absolute;
+    transition: all 0.3s ease-in-out;
+    width: 330px;
+    z-index: 0;
+    border-radius: 15px;
+    background-size: contain;
+  }
+
+  

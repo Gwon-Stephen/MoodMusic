@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Music</title>
+    <link rel="stylesheet" href="../static/results.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1 style="font-size:60px">Hi {{ name }}</h1>
+            <span>
+                <h3> </h3>
+            </span>
+        </nav>
+    </header>
+    <section id="Home">
+        <h1>You are looking {{ mood }}</h1>
+        
+        <!-- Clouds -->
+        <img src="../static/leftCloud.png" id="leftCloud" alt="">
+        <img src="../static/mainCloud.png" id="mainCloud" alt="">
+        <img src="../static/rightCloud.png" id="rightCloud" alt="">
+        <!-- Background -->
+        <img src="../static/Layer 1.png" id="Mountain1" alt="">
+        <img src="../static/Layer 2.png" id="Mountain2" alt="">
+    </section>
+    <section id="About">
+        <h1>Your Playlist</h1>
+        <div class="gallery">
+            {% for track in tracks %}
+            <div class = "track">
+                <img class="cover" src={{track.cover_url}} + ".png"/>
+                <div class="name"><b>{{track.name}}</b></div>
+                <div class="artist"><i>{{track.artist}}</i></div>
+            </div>
+            {% endfor %}
+            <div class="gallery-controls"></div>
+        </div>
+        <script src="../static/script.js"></script>
+    </section>
+    
+    <script>
+        window.addEventListener(("scroll"),()=>{
+        document.querySelector("#Home h1").style.marginTop = `${window.scrollY * 1.5}px`
+        document.querySelector("#Mountain1").style.marginBottom = `${106 - window.scrollY}px`
+        document.querySelector("#leftCloud").style.marginLeft = `-${window.scrollY}px`
+        document.querySelector("#mainCloud").style.marginTop = `-${window.scrollY}px`
+        document.querySelector("#rightCloud").style.marginRight = `-${window.scrollY}px`
+        })
+    </script>
+</body>
+</html>
+
