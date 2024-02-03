@@ -10,3 +10,6 @@ MarkupSafe==2.1.5
 requests==2.31.0
 urllib3==2.2.0
 Werkzeug==3.0.1
+opencv-python==4.9.0.80
+numpy==1.24.1
+deepface==0.0.83

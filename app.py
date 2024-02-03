@@ -1,6 +1,8 @@
 from flask import render_template, Flask, redirect, session, request
-import requests, json, base64
-import util, webscraper
+import requests, json, base64, cv2
+import util, webscraper, mood
+import numpy as np
+from deepface import DeepFace
 
 app = Flask(__name__)
 app.secret_key = 'dev'
@@ -39,6 +41,11 @@ def callback():
     token_full = requests.post("https://accounts.spotify.com/api/token", params=params, headers=headers).json()
     session["token"] = token_full['access_token']
     session["user_id"] = util.request_user_spotify_id(session["token"])
+
+    face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+    model = DeepFace.build_model("Emotion")
+
+    session["mood"] = mood.getMood(face_cascade, model)
     #webscraper.webscraper(session["token"])
     return redirect("/results")
 
@@ -48,6 +55,7 @@ def index():
 
 @app.route('/results')
 def results():
+    print(session["mood"])
     # mood = mood.getMood()
     # recommendations = util.make_recommendations(access_token=session["token"], parameters=util.make_parameters(mood))
     # request.session["recommendations"] = []
