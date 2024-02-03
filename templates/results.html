@@ -18,7 +18,7 @@
     </header>
     <section id="Home">
         <h1>You are looking {{ mood }}</h1>
-        
+        <h2>Feeling something else? <a href="{{url_for('results')}}">Reload this page!</a></h2>
         <!-- Clouds -->
         <img src="../static/leftCloud.png" id="leftCloud" alt="">
         <img src="../static/mainCloud.png" id="mainCloud" alt="">
@@ -42,11 +42,9 @@
                 {% endfor %}
             </ul>
         </div>
-        <div class = "playlist">
-            <a href="{{url_for('playlist')}}">
-                <div class="login__button">Make Playlist in Spotify </i></div>
-            </a>
-        </div>
+        <a href="{{url_for('playlist')}}">
+            <div class="login__button">Make Playlist in Spotify!</div>
+        </a>
     </section>
     
     <script>

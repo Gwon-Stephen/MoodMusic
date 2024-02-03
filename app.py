@@ -70,7 +70,7 @@ def results():
             "cover-url": song.cover_url,
         }
         session["recommendations"].append(json.dumps(x))
-    return (render_template('results.html', name=session["name"], mood=session["mood"], tracks=recommendations)) #add emoticon
+    return (render_template('results.html', name=session["name"], mood=session["mood"], tracks=recommendations))
 
 @app.route('/playlist')
 def playlist():
@@ -79,8 +79,10 @@ def playlist():
         song = json.loads(song)
         s = util.Song(name=song["name"], artist=song["artist"], uri=song["uri"], cover_url=song["cover-url"])
         recommendations.append(s)
-    util.make_playlist(access_token=session["token"], mood=session["mood"], songs=recommendations)
-    return (render_template('results.html', name=session["name"], mood=session["mood"], tracks=recommendations))
+    
+    #return (render_template('results.html', name=session["name"], mood=session["mood"], tracks=recommendations)) 
+    url = util.make_playlist(access_token=session["token"], mood=session["mood"], songs=recommendations)
+    return redirect(url)
 
 if __name__ == '__main__':
     app.run(use_reloader=True, debug=True)

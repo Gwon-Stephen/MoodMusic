@@ -94,13 +94,15 @@ def make_parameters(mood):
         parameters["target_mode"] = 1
     if mood == 'sad':
         parameters["target_acousticness"] = 0.7540
-        parameters["target_danceability"] = 0.4035
+        parameters["target_danceability"] = 0.2035
         parameters["target_valence"] = 0.2070
         parameters["target_energy"] = 0.25
         parameters["target_mode"] = 0
     if mood == 'angry':
-        parameters["max_acousticness"] = 0.0609
+        parameters["max_acousticness"] = 0.4
+        parameters["target_acousticness"] = 0.06
         parameters["target_instrumentalness"] = 0
+        parameters["max_instrumentalness"] = 0.05
         parameters["max_valence"] = 0.3
         parameters["min_energy"] = 0.5
         parameters["target_danceability"] = 0.75
@@ -111,16 +113,13 @@ def make_parameters(mood):
         parameters["target_valence"] = 0.3270
         parameters["target_tempo"] = 115.939
         parameters["max_energy"] = 0.6
-    print(parameters)
     return parameters
 
 # takes list of Song objects & add songs to queue
 def add_queue(access_token, songs):
     endpoint = "/v1/me/player/queue"
     parameters = {}
-    print("adding to queue")
     for song in songs:
-        print("adding", song.uri, "to queue")
         parameters["uri"] = song.uri
         make_API_call(access_token=access_token, endpoint=endpoint, params=parameters, post=True)
     endpoint = "/v1/me/player/next"
@@ -135,8 +134,10 @@ def make_playlist(access_token, mood, songs):
         "description": "AMPLIFY YOUR MOOD!",
         "public": True
     })
-    playlist = make_API_call(access_token=access_token, endpoint=endpoint, data=data, post=True)["id"]
-    
+    pl = make_API_call(access_token=access_token, endpoint=endpoint, data=data, post=True)
+    playlist = pl["id"]
+    url = pl["external_urls"]["spotify"]
+
     endpoint = "/v1/playlists/" + playlist + "/tracks"
     uris = []
     for song in songs:
@@ -145,20 +146,17 @@ def make_playlist(access_token, mood, songs):
     data = json.dumps({
         "uris":uris
     })
-    print(uris)
-    return make_API_call(access_token=access_token, endpoint=endpoint, data=data, post=True)
+    make_API_call(access_token=access_token, endpoint=endpoint, data=data, post=True)
+    return url
 
 def format_mood(mood):
     moodstring = ""
     if mood == 'happy':
         moodstring = "happy! :D"
     if mood == 'sad':
-        moodstring = "down :()"
+        moodstring = "down :("
     if mood == 'angry':
-        moodstring = "angry >:()"
+        moodstring = "angry >:("
     if mood == 'neutral':
         moodstring = "calm :)"
     return moodstring
-
-# access OpenCV capture in frontend
-# refresh page functionality 

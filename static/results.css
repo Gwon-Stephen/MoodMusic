@@ -18,6 +18,7 @@
   }
   body {
     overflow-x: hidden;
+    background-color: #100422;
   }
   #Home {
     background-image: url(./background.png);
@@ -35,6 +36,13 @@
     font-size: 50px;
     z-index: 2;
     margin-top: 30px;
+  }
+  #Home h2{
+    color: white;
+    position: absolute;
+    font-size: 15px;
+    z-index: 2;
+    margin-top: 120px;
   }
   #Home img {
     position: absolute;
@@ -114,7 +122,7 @@
     padding: 0px 40px;
     max-height: 100vh;
     font-size: 20px;
-    overflow: hidden;
+    /*overflow: hidden;*/
   }
   #About h1 {
     padding-top: 40px;
@@ -215,14 +223,9 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional: adds a subtle shadow */
     cursor: pointer; /* Changes the mouse cursor to indicate it's clickable */
     transition: background-color 0.3s; /* Smooth background color transition for hover effect */
-    position: absolute; /* Fixed position relative to the viewport */
+    /*position: absolute; /* Fixed position relative to the viewport */
     bottom: 20px; /* 20px from the bottom */
     right: 80px; /* 20px from the right */
     text-decoration: none; /* Removes the underline from the link */
     z-index: 10;
-  }
-
-  .playlist{
-    background-color: blue;
-    z-index: -1;
   }

@@ -8,7 +8,7 @@ def getMood(face_cascade, model):
 
     cap = cv2.VideoCapture(0)
     success, image = cap.read()
-    cv2.imwrite('capture.jpg', image)
+    cv2.imwrite('static/capture.jpg', image)
 
     height, width, channels = image.shape
     screen_center_x = width / 2
