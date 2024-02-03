@@ -184,13 +184,13 @@
     cursor: pointer;
     border-radius: .25rem;
     padding: 0 .5rem;
-    background-color: rgba(0,0,0,.1);
+    background-color: rgba(0,0,0,.2);
   }
    
   .carousel-button:hover,
   .carousel-button:focus {
     color: white;
-    background-color: rgba(0,0,0,.2);
+    background-color: rgba(0,0,0,.4);
   }
 
   .carousel-button:focus {
@@ -198,11 +198,11 @@
   }
 
   .carousel-button.prev {
-    left: 1rem;
+    left: 20rem;
   }
 
   .carousel-button.next {
-    right: 1rem;
+    right: 20rem;
   }
 
   .login__button {
