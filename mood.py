@@ -3,7 +3,7 @@ import numpy as np
 from deepface import DeepFace
 
 def getMood(face_cascade, model):
-    emotions = ['angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral']
+    emotions = ['angry', 'angry', 'sad', 'happy', 'sad', 'happy', 'neutral']
     emotion = 'happy'
 
     cap = cv2.VideoCapture(0)

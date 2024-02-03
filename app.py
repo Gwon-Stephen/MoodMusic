@@ -56,8 +56,11 @@ def results():
 
     curmood = mood.getMood(face_cascade, model)
     session["name"] = util.request_user_display_name(session["token"])
+    session["mood"] = util.format_mood(curmood)
 
     recommendations = util.make_recommendations(access_token=session["token"], parameters=util.make_parameters(curmood))
+    #recommendations = util.make_recommendations(access_token=session["token"], parameters=util.make_parameters("angry"))
+
     session["recommendations"] = []
     for song in recommendations:
         x = {
@@ -67,7 +70,17 @@ def results():
             "cover-url": song.cover_url,
         }
         session["recommendations"].append(json.dumps(x))
-    return (render_template('results.html', name=session["name"], mood=curmood, tracks=recommendations)) #add emoticon
+    return (render_template('results.html', name=session["name"], mood=session["mood"], tracks=recommendations)) #add emoticon
+
+@app.route('/playlist')
+def playlist():
+    recommendations = []
+    for song in session["recommendations"]:
+        song = json.loads(song)
+        s = util.Song(name=song["name"], artist=song["artist"], uri=song["uri"], cover_url=song["cover-url"])
+        recommendations.append(s)
+    util.make_playlist(access_token=session["token"], mood=session["mood"], songs=recommendations)
+    return (render_template('results.html', name=session["name"], mood=session["mood"], tracks=recommendations))
 
 if __name__ == '__main__':
     app.run(use_reloader=True, debug=True)
